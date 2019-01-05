@@ -1,0 +1,76 @@
+
+//LOGIN CREDENTIALS
+
+
+create table UserRole(user_name varchar2(20) PRIMARY KEY,password varchar2(12),role_code varchar2(10));
+
+
+//ACCOUNT CREATION,CAN BE ACCESSED BY 3 ACTORS
+
+create table Accounts( account_number number(10) PRIMARY KEY,insured_name varchar2(30),insured_street varchar2(40),
+                               insured_city varchar2(15),
+                              insured_state varchar2(15),insured_zip number(5),business_segement varchar2(30), 
+                            user_name varchar2(20) FOREIGN KEY references UserRole(user_name));
+
+
+//policy
+
+create table policy(policy_number number(10) PRIMARY KEY,policy_premium number(8),
+                    account_number number(10) FOREIGN KEY references Accounts(account_number));
+
+
+
+
+//policy details
+
+create table policy_details(policy_number number(10) FOREIGN KEY references policy(policy_number),
+                            question_Id varchar2(15),answer varchar2(30));
+
+
+
+//policy creation
+
+
+
+CREATE TABLE policycreation(
+Business_segment varchar2(20),
+Question varchar2(50),
+Answer1 varchar2(30),
+Ans1_weightage number(5),
+Answer2 varchar2(30),
+Ans2_weightage number(5),
+Answer3 varchar2(30),
+Ans3_weightage number(5)); 
+
+
+
+
+insert into policycreation  values('Business_auto','vehical_type','light',200,'heavy',400,'truck',600);
+insert into policycreation  values('Business_auto','vehical_model_year','less than 2000',200,'2001_to_2010',400,'more_than_2010',600);
+insert into policycreation  values('Business_auto','vehical_model','high_segement',200,'mid_segement',400,'economy',600);
+insert into policycreation  values('Business_auto','daily_commute_distance','less_than_21',200,'21_to_50',400,'greater_than_50',600);
+insert into policycreation  values('Business_auto','service_center','authorized',200,'non_authorized',400,' ',600);
+insert into policycreation  values('Business_auto','collison_coverage_limit','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+insert into policycreation  values('Business_auto','bodily_injury_limit','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+insert into policycreation  values('Business_auto','uninsured_motorist','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+insert into policycreation  values('Business_auto','unknown_hit_or_theft_coverage','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+insert into policycreation  values('Business_auto','property_and_liability','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+
+
+
+insert into policycreation  values('general_merchant','business_type','general_store',200,'hardware',400,'clothing',600);
+insert into policycreation  values('general_merchant','asset_value','less_than_1000000',200,'1000001_to_2500000',400,'more_than_2500001',600);
+insert into policycreation  values('general_merchant','inflammable_objects','yes',200,'no',400,' ',600);
+insert into policycreation  values('general_merchant','propert_size','less_than_5000_sq_ft',200,'5000_to_10000_sq_ft',400,'more_than_10000_sq_ft',600);
+insert into policycreation  values('general_merchant','property_damage','upto_500000',200,'500000_to_1000000',400,'1000000_to_1500000',600);
+insert into policycreation  values('general_merchant','bodily_injury','10000_to_30000',200,'30001_to_50000',400,'50001_to_10000',600);
+insert into policycreation  values('general_merchant','asset_theft_limit','upto_50000',200,'50000_t0_100000',400,'100001_to_200000',600);
+insert into policycreation  values('general_merchant','liability_coverage','10000_to_30000',200,'10000_to_30000',400,'10000_to_30000',600);
+
+
+
+
+
+create table Business_auto(question varchar2(80),answer1  varchar2(30),ans_weightage1 number(10),answer2 varchar2(30),
+                           ans_weightage2 number(10),answer3 varchar2(30),ans_weightage3 number(10));
+

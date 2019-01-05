@@ -1,0 +1,2 @@
+create table Qa(question varchar2(50),answer varchar2(50),weightage number(5),businesssegment varchar2(50),username varchar2(30),premium number(10));
+
